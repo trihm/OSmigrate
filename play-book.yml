@@ -1,0 +1,15 @@
+---
+- hosts: NewOS
+  gather_facts: no
+  sudo: yes
+  task: 
+  - name: install Dependencies
+    apt:
+      name: {{ item }}
+      state: present
+      with_items:
+      - 
+- hosts: OldOS
+  sudo: yes
+  task:
+  - name: 

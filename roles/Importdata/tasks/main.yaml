@@ -1,0 +1,9 @@
+---
+- name: Docker import
+  command: {{ item }}
+  with_items:
+  - cat /opt/rsync/passwd.bak >> /etc/passwd
+  - cat /opt/rsync/groups.bak >> /etc/groups
+  - cat /opt/rsync/shadow.bak >> /etc/shadow
+  - cat /opt/rsync/gshadow.bak >> /etc/gshadow
+  - tar -xvf /opt/home.tar -C /home

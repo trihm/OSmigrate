@@ -1,0 +1,8 @@
+---
+- name: Pack Data
+  command: {{ item }}
+  with_items:
+  - mkdir /migrate
+  - docker container exec "{{ container1 }}" /usr/bin/mysqldump -u root --password="{{ DBpassword }}" --all-databases > /migrate/backup.sql
+  - 
+  - rsync -avzhe ssh /migrate/* root@"{{ destIP }}":/opt

@@ -1,3 +1,4 @@
 [OldOS]
-
+source ansible_host=192.168.32.130 ansible_user=root ansible_password=Hiimjerry
 [NewOS]
+dest ansible_host=192.168.32.132 ansible_user=root ansible_password=Hiimjerry

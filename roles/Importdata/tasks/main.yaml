@@ -7,3 +7,5 @@
   - cat /opt/rsync/shadow.bak >> /etc/shadow
   - cat /opt/rsync/gshadow.bak >> /etc/gshadow
   - tar -xvf /opt/home.tar -C /
+  - docker container run -d --name db -e MYSQL_ROOT_PASSWORD="{{ dbpassword }}" -v /opt/mysql mysql
+  - cat /opt/rsync/backup.sql | docker exec -i db /usr/bin/mysql -u root --password={{ dbpassword }}

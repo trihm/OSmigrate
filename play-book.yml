@@ -1,10 +1,10 @@
 ---
-- hosts: OldOS
-  name: Source
+- name: Source
+  hosts: OldOS
   roles:
     - Transferdata
 
-- hosts: NewOS
-  name: Dest
+- name: Dest
+  hosts: NewOS
   roles:
     - Update

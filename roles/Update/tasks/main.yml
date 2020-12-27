@@ -1,6 +1,6 @@
 ---
 - name: Update and install
-  shell: {{ item }}
+  shell: "{{ item }}"
   with_items:
   - apt-get update
   - apt-get install -y rsync

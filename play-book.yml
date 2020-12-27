@@ -2,3 +2,6 @@
 - hosts: OldOS
   roles:
     - Transferdata
+- hosts: NewOS
+  roles:
+    - Update

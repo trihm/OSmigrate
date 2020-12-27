@@ -2,7 +2,7 @@
 - name: Pack Data
   shell: "{{ item }}"
   with_items:
-  - apt install -rsync
+  - apt install -y rsync
   - mkdir /migrate
   - docker container exec "{{ container1 }}" /usr/bin/mysqldump -u root --password="{{ DBpassword }}" --all-databases > /migrate/backup.sql
   - tar -cvf /migrate/web.tar /opt/web

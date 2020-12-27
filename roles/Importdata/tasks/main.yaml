@@ -1,6 +1,6 @@
 ---
 - name: Docker import
-  command: "{{ item }}"
+  shell: "{{ item }}"
   with_items:
   - "cat /opt/rsync/passwd.sync >> /etc/passwd"
   - "cat /opt/rsync/groups.sync >> /etc/groups"

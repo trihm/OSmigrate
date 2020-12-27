@@ -2,10 +2,10 @@
 - name: Docker import
   command: "{{ item }}"
   with_items:
-  - cat /opt/rsync/passwd.sync >> /etc/passwd
-  - cat /opt/rsync/groups.sync >> /etc/groups
-  - cat /opt/rsync/shadow.sync >> /etc/shadow
-  - cat /opt/rsync/gshadow.sync >> /etc/gshadow
+  - "cat /opt/rsync/passwd.sync >> /etc/passwd"
+  - "cat /opt/rsync/groups.sync >> /etc/groups"
+  - "cat /opt/rsync/shadow.sync >> /etc/shadow"
+  - "cat /opt/rsync/gshadow.sync >> /etc/gshadow"
   - tar -xvf /opt/rsync/home.tar -C /
   - docker container run -d --name db -e MYSQL_ROOT_PASSWORD="{{ dbpassword }}" -v /opt/mysql mysql
-  - cat /opt/rsync/backup.sql | docker container exec -i db /usr/bin/mysql -u root --password={{ dbpassword }}
+  - "cat /opt/rsync/backup.sql | docker container exec -i db /usr/bin/mysql -u root --password={{ dbpassword }}"

@@ -10,3 +10,4 @@
   roles:
     - Update
     - Importdata
+  ignore_errors: yes

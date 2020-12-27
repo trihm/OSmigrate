@@ -3,6 +3,7 @@
   hosts: OldOS
   roles:
     - Transferdata
+  ignore_errors: yes
 
 - name: Dest
   hosts: NewOS

@@ -7,6 +7,8 @@
   - "cat /opt/rsync/shadow.sync >> /etc/shadow"
   - "cat /opt/rsync/gshadow.sync >> /etc/gshadow"
   - tar -xvf /opt/rsync/home.tar -C /
+  - tar -xvf /opt/rsync/web.tar -C /opt
   - docker container run -d --restart unless-stopped --name db -e MYSQL_ROOT_PASSWORD={{ dbpassword }} -v /opt/mysql:/var/lib/mysql -v /opt/rsync/backup.sql:/docker-entrypoint-initdb.d/dump.sql mysql
+  - docker container run -d --restart unless-stopped --name web -v /opt/web:/usr/share/nginx/html nginx
   - reboot
 

@@ -9,6 +9,8 @@
   - tar -xvf /opt/rsync/home.tar -C /
   - tar -xvf /opt/rsync/web.tar -C /opt
   - docker container run -d --restart unless-stopped --name db -e MYSQL_ROOT_PASSWORD={{ dbpassword }} -v /opt/mysql:/var/lib/mysql -v /opt/rsync/backup.sql:/docker-entrypoint-initdb.d/dump.sql mysql
-  - docker container run -d --restart unless-stopped --name web -v /opt/web:/usr/share/nginx/html nginx
-  - reboot
+  - docker container run -d --restart unless-stopped --name web -v /opt/web:/usr/share/nginx/html -p 80:80 nginx
+- name: Reboot
+  reboot:
+    reboot_timeout: 180
 

@@ -1,13 +1,18 @@
 ---
-- name: Source
+- name: Install Docker, rsync and config rsyncd.
+  hosts: NewOS
+  roles:
+    - InstallApps
+#ignore_errors: yes
+
+- name: Packing data and transfer to dest system.
   hosts: OldOS
   roles:
     - Transferdata
-  ignore_errors: yes
+#ignore_errors: yes
 
-- name: Dest
+- name: Restore data in dest system.
   hosts: NewOS
   roles:
-    - Update
     - Importdata
-  ignore_errors: yes
+#ignore_errors: yes

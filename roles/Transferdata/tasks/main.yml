@@ -1,5 +1,5 @@
 ---
-- name: Pack Data
+- name: Pack and transfer data
   shell: "{{ item }}"
   with_items:
   - apt install -y rsync
@@ -9,6 +9,6 @@
   - tar -cvf /migrate/home.tar /home
   - "awk -v LIMIT=1000 -F: '($3>=LIMIT) && ($3!=65534)' /etc/passwd > /migrate/passwd.sync"
   - "awk -v LIMIT=1000 -F: '($3>=LIMIT) && ($3!=65534)' /etc/group > /migrate/group.sync"
-  - "awk -v LIMIT=1000 -F: '($3>=LIMIT) && ($3!=35534) {print $1}' /etc/passwd | tee - | egrep -f - /etc/shadow > /migrate/shadow.sync"
+  - "awk -v LIMIT=1000 -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/passwd | tee - | egrep -f - /etc/shadow > /migrate/shadow.sync"
   - "awk -v LIMIT=1000 -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/group | tee - | egrep -f - /etc/gshadow > /migrate/gshadow.sync"
   - rsync -avz --no-o --no-g /migrate/ "{{ DestIP }}"::migrate

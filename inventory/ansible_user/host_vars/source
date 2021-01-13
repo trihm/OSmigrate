@@ -1,0 +1,4 @@
+ansible_host: 192.168.253.130
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+dbcontainername: db
+DBpassword: "{{ encrypt_DBpassword }}"

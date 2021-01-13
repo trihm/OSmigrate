@@ -1,0 +1,30 @@
+- name: Import User, group data
+  shell: "{{ item }}"
+  with_items:
+  - "cat /opt/rsync/passwd.sync >> /etc/passwd"
+  - "cat /opt/rsync/group.sync >> /etc/group"
+  - "cat /opt/rsync/shadow.sync >> /etc/shadow"
+  - "cat /opt/rsync/gshadow.sync >> /etc/gshadow"
+  register: userimport
+
+- name: Debug command import user data
+  debug:
+    msg: "{{ userimport }}"
+    verbosity: 2
+  when: userimport is defined
+
+- name: Unarchive web and home directory
+  unarchive:
+    src: /opt/rsync/data.tar
+    dest: /
+  register: unarchive
+
+- name: Debug unarchive process
+  debug:
+    msg: "{{ unarchive }}"
+    verbosity: 2
+  when: unarchive is defined
+
+- name: Update Credential
+  reboot:
+    reboot_timeout: 180

@@ -1,0 +1,4 @@
+#Create as this directory
+dirpath_create: /opt/rsync
+#rsyncd.conf relative path
+rsyncdconf: files/rsyncd.conf.2

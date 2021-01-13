@@ -1,0 +1,29 @@
+---
+- name: Create Rsync dest folder ans install Rsync
+  hosts: all
+  roles: 
+    - Createfolder
+    - InstallRsync
+#  ignore_errors: yes
+  
+- name: SourceOS Jobs
+  hosts: SourceOS
+  roles:
+    - Packdata
+#  ignore_errors: yes
+
+- name: Send rsyncd config
+  hosts: localhost
+  roles:
+    - Transferdata
+#  ignore_errors: yes
+
+- name: Import creadential, data and run container
+  hosts: DestOS
+  roles:
+    - InstallDocker
+    - ImportCredential
+    - Runcontainer
+  environment:
+    PYTHONPATH: "/usr/local/lib/python2.7/dist-packages"
+# ignore_errors: yes

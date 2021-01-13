@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any {ansible-node}
 
     stages {
         stage('Test') {

@@ -1,0 +1,14 @@
+- name: Push data to DestOS
+  ansible.posix.synchronize:
+    src: "{{ dirpath_create }}/"
+    dest: rsync://{{ item }}/migrate
+    mode: push
+  loop: "{{ DestIP }}"
+  delegate_to: "{{ SourceIP }}"
+  register: rsync
+
+- name: Push data debugging
+  debug:
+    msg: "{{ rsync }}"
+    verbosity: 2
+  when: rsync is defined

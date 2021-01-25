@@ -1,5 +1,0 @@
----
-- name: Create Ansible user and send SSH key
-  hosts: all
-  roles:
-    - CreateAnsibleUser
